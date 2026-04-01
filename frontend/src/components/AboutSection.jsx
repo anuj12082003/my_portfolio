@@ -1,4 +1,13 @@
-import { motion as Motion } from "framer-motion";
+import { motion as Motion } from "framer-motion"
+
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Node.js",
+  "MongoDB"
+]
 
 function AboutSection() {
   return (
@@ -22,17 +31,19 @@ function AboutSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
 
-          {["HTML","CSS","JavaScript","React","Node.js","MongoDB"].map((skill,index) => (
-            
-            <Motion.div
-              key={index}
-              whileHover={{ scale: 1.1 }}
-              className="bg-black p-6 rounded-xl shadow-lg"
-            >
-              <h3 className="text-lg font-semibold">{skill}</h3>
-            </Motion.div>
-
-          ))}
+          {skills.map((skill, index) => {
+            return (
+              <Motion.div
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                className="bg-black p-6 rounded-xl shadow-lg"
+              >
+                <h3 className="text-lg font-semibold">
+                  {skill}
+                </h3>
+              </Motion.div>
+            )
+          })}
 
         </div>
 
