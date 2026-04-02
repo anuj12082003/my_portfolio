@@ -7,6 +7,7 @@ export const sendMessage = async (req, res) => {
 
     const { name, email, message } = req.body
 
+    // Save message to database
     const newMessage = new Contact({
       name,
       email,
@@ -15,6 +16,7 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save()
 
+    // Email transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -23,31 +25,33 @@ export const sendMessage = async (req, res) => {
       }
     })
 
+    // Send email
     await transporter.sendMail({
-      from: email,
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: "New Portfolio Contact Message",
-      text: `
-      Name: ${name}
-      Email: ${email}
-      Message: ${message}
+      replyTo: email,
+      subject: `New Message from ${name}`,
+      html: `
+        <h3>New Portfolio Message</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
       `
     })
 
-    res.json({
+    res.status(200).json({
       success: true,
       message: "Message sent successfully"
     })
 
   } catch (error) {
 
-    console.log(error)
+    console.error("Email Error:", error)
 
     res.status(500).json({
       success: false,
-      message: "Server Error"
+      message: "Email failed to send"
     })
-
   }
-
 }

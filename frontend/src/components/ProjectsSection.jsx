@@ -1,8 +1,33 @@
-import { motion as Motion } from "framer-motion";
+import { motion as Motion } from "framer-motion"
 
-function AboutSection() {
+function ProjectsSection() {
+
+  const projects = [
+    {
+      title: "Portfolio Website",
+      description: "Modern MERN portfolio with animations and contact form.",
+      image: "/projects/portfolio.png",
+      github: "https://github.com/yourusername/portfolio",
+      live: "https://yourportfolio.com"
+    },
+    {
+      title: "Task Manager",
+      description: "Full stack task manager built with React, Node.js and MongoDB.",
+      image: "/projects/taskmanager.png",
+      github: "https://github.com/yourusername/taskmanager",
+      live: "https://taskmanager-demo.com"
+    },
+    {
+      title: "Weather App",
+      description: "React weather app that fetches live weather data from API.",
+      image: "/projects/weather.png",
+      github: "https://github.com/yourusername/weather",
+      live: "https://weather-demo.com"
+    }
+  ]
+
   return (
-    <section className="bg-gray-900 text-white py-20 px-6">
+    <section id="projects" className="bg-gray-900 text-white py-20 px-6">
 
       <div className="max-w-6xl mx-auto text-center">
 
@@ -10,26 +35,65 @@ function AboutSection() {
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-6"
+          className="text-4xl font-bold mb-12"
         >
-          About Me
+          Projects
         </Motion.h2>
 
-        <p className="text-gray-400 max-w-3xl mx-auto mb-12">
-          I am a MERN Stack Developer passionate about building modern web
-          applications with clean UI and smooth user experiences.
-        </p>
+        <div className="grid md:grid-cols-3 gap-8">
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {projects.map((project, index) => (
 
-          {["HTML","CSS","JavaScript","React","Node.js","MongoDB"].map((skill,index) => (
-            
             <Motion.div
               key={index}
-              whileHover={{ scale: 1.1 }}
-              className="bg-black p-6 rounded-xl shadow-lg"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.5 }}
+              className="bg-black rounded-xl overflow-hidden shadow-lg"
             >
-              <h3 className="text-lg font-semibold">{skill}</h3>
+
+              {/* Project Image */}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover"
+              />
+
+              <div className="p-6">
+
+                <h3 className="text-xl font-semibold mb-2">
+                  {project.title}
+                </h3>
+
+                <p className="text-gray-400 mb-4">
+                  {project.description}
+                </p>
+
+                <div className="flex justify-center gap-4">
+
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-gray-700 px-4 py-2 rounded hover:bg-gray-600"
+                  >
+                    GitHub
+                  </a>
+
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400"
+                  >
+                    Live Demo
+                  </a>
+
+                </div>
+
+              </div>
+
             </Motion.div>
 
           ))}
@@ -42,4 +106,4 @@ function AboutSection() {
   )
 }
 
-export default AboutSection
+export default ProjectsSection
