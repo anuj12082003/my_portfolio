@@ -76,8 +76,8 @@ function Hero() {
             <div className="absolute inset-0 bg-emerald-400 blur-3xl opacity-30 rounded-full"></div>
 
             <img
-              src="/profile.png"
-              className="w-[280px] rounded-full border-4 border-emerald-400 relative"
+              src="/profile.jpg"
+              className="w-70 rounded-full border-4 border-emerald-400 relative"
             />
 
           </div>

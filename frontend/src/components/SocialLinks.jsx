@@ -25,11 +25,13 @@ function SocialLinks() {
       </a>
 
       <a
-        href="mailto:anuj9284gupta@gmail.com"
-        className="hover:text-emerald-500 transition"
-      >
-        <FaEnvelope size={24} />
-      </a>
+       href="https://mail.google.com/mail/?view=cm&fs=1&to=anuj9284gupta@gmail.com"
+         target="_blank"
+         rel="noreferrer"
+          className="hover:text-emerald-500 transition"
+        >
+          <FaEnvelope size={24} />
+        </a>
 
     </div>
 
