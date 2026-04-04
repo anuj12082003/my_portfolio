@@ -9,11 +9,54 @@ function ContactSection() {
     message: ""
   })
 
+  const [loading,setLoading]=useState(false)
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+
+      const res = await fetch(
+        "https://my-portfolio-backend-qnv5.onrender.com/api/contact",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(formData)
+        }
+      )
+
+      const data = await res.json()
+
+      if(data.success){
+        alert("Message Sent Successfully")
+
+        setFormData({
+          name:"",
+          email:"",
+          message:""
+        })
+      }
+
+    } catch(error){
+
+      console.log(error)
+      alert("Something went wrong")
+
+    }
+
+    setLoading(false)
+
   }
 
   return (
@@ -36,6 +79,7 @@ function ContactSection() {
         </p>
 
         <Motion.form
+          onSubmit={handleSubmit}
           className="grid gap-6"
         >
 
@@ -45,6 +89,7 @@ function ContactSection() {
             placeholder="Your Name"
             value={formData.name}
             onChange={handleChange}
+            required
             className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
@@ -54,6 +99,7 @@ function ContactSection() {
             placeholder="Your Email"
             value={formData.email}
             onChange={handleChange}
+            required
             className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
@@ -63,13 +109,16 @@ function ContactSection() {
             placeholder="Your Message"
             value={formData.message}
             onChange={handleChange}
+            required
             className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
           <button
+            type="submit"
+            disabled={loading}
             className="bg-emerald-500 text-white py-3 rounded-lg hover:bg-emerald-600 transition"
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
 
         </Motion.form>
