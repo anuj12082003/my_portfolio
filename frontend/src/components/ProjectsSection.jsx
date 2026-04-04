@@ -1,4 +1,6 @@
 import { motion as Motion } from "framer-motion"
+import Tilt from "react-parallax-tilt"
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 
 function ProjectsSection() {
 
@@ -27,74 +29,78 @@ function ProjectsSection() {
   ]
 
   return (
-    <section id="projects" className="bg-gray-900 text-white py-20 px-6">
 
-      <div className="max-w-6xl mx-auto text-center">
+    <section id="projects" className="py-24 px-6 bg-white dark:bg-slate-950">
+
+      <div className="max-w-7xl mx-auto text-center">
 
         <Motion.h2
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-12"
+          className="text-4xl font-bold text-slate-800 dark:text-white mb-16"
         >
-          Projects
+          My Projects
         </Motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
 
           {projects.map((project, index) => (
 
-            <Motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.5 }}
-              className="bg-black rounded-xl overflow-hidden shadow-lg"
-            >
+            <Tilt key={index} scale={1.05} className="rounded-xl">
 
-              {/* Project Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
+              <Motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition"
+              >
 
-              <div className="p-6">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
 
-                <h3 className="text-xl font-semibold mb-2">
-                  {project.title}
-                </h3>
+                <div className="p-6">
 
-                <p className="text-gray-400 mb-4">
-                  {project.description}
-                </p>
+                  <h3 className="text-xl font-semibold text-emerald-500 mb-2">
+                    {project.title}
+                  </h3>
 
-                <div className="flex justify-center gap-4">
+                  <p className="text-slate-600 dark:text-slate-300 mb-4">
+                    {project.description}
+                  </p>
 
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-gray-700 px-4 py-2 rounded hover:bg-gray-600"
-                  >
-                    GitHub
-                  </a>
+                  <div className="flex justify-center gap-4">
 
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-400"
-                  >
-                    Live Demo
-                  </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 bg-slate-200 dark:bg-slate-700 px-4 py-2 rounded hover:bg-slate-300 dark:hover:bg-slate-600 transition"
+                    >
+                      <FaGithub />
+                      GitHub
+                    </a>
+
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 bg-emerald-500 text-white px-4 py-2 rounded hover:bg-emerald-600 transition"
+                    >
+                      <FaExternalLinkAlt />
+                      Live
+                    </a>
+
+                  </div>
 
                 </div>
 
-              </div>
+              </Motion.div>
 
-            </Motion.div>
+            </Tilt>
 
           ))}
 
@@ -103,6 +109,7 @@ function ProjectsSection() {
       </div>
 
     </section>
+
   )
 }
 

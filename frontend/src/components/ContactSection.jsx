@@ -9,9 +9,6 @@ function ContactSection() {
     message: ""
   })
 
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,48 +16,9 @@ function ContactSection() {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    setLoading(true)
-
-    try {
-
-      const res = await fetch("https://my-portfolio-backend-qnv5.onrender.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      })
-
-      const data = await res.json()
-
-      if (data.success) {
-
-        setSuccess(true)
-
-        setFormData({
-          name: "",
-          email: "",
-          message: ""
-        })
-
-        setTimeout(() => {
-          setSuccess(false)
-        }, 3000)
-      }
-
-    } catch (error) {
-      console.error(error)
-      alert("Something went wrong")
-    }
-
-    setLoading(false)
-  }
-
   return (
-    <section id="contact" className="bg-gray-900 text-white py-20 px-6">
+
+    <section id="contact" className="py-24 px-6 bg-slate-50 dark:bg-slate-900">
 
       <div className="max-w-4xl mx-auto text-center">
 
@@ -68,26 +26,16 @@ function ContactSection() {
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-6"
+          className="text-4xl font-bold text-slate-800 dark:text-white mb-6"
         >
           Contact Me
         </Motion.h2>
 
-        <p className="text-gray-400 mb-12">
-          Feel free to reach out for collaborations or just a friendly hello 👋
+        <p className="text-slate-600 dark:text-slate-300 mb-12">
+          Feel free to reach out for collaborations.
         </p>
 
-        {success && (
-          <p className="text-green-400 mb-6">
-            Message sent successfully 🚀
-          </p>
-        )}
-
         <Motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           className="grid gap-6"
         >
 
@@ -97,8 +45,7 @@ function ContactSection() {
             placeholder="Your Name"
             value={formData.name}
             onChange={handleChange}
-            required
-            className="bg-black border border-gray-700 p-3 rounded-lg focus:outline-none focus:border-blue-500"
+            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
           <input
@@ -107,8 +54,7 @@ function ContactSection() {
             placeholder="Your Email"
             value={formData.email}
             onChange={handleChange}
-            required
-            className="bg-black border border-gray-700 p-3 rounded-lg focus:outline-none focus:border-blue-500"
+            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
           <textarea
@@ -117,16 +63,13 @@ function ContactSection() {
             placeholder="Your Message"
             value={formData.message}
             onChange={handleChange}
-            required
-            className="bg-black border border-gray-700 p-3 rounded-lg focus:outline-none focus:border-blue-500"
+            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 p-3 rounded-lg"
           />
 
           <button
-            type="submit"
-            disabled={loading}
-            className="bg-blue-500 py-3 rounded-lg hover:bg-blue-600 transition"
+            className="bg-emerald-500 text-white py-3 rounded-lg hover:bg-emerald-600 transition"
           >
-            {loading ? "Sending..." : "Send Message"}
+            Send Message
           </button>
 
         </Motion.form>
@@ -134,6 +77,7 @@ function ContactSection() {
       </div>
 
     </section>
+
   )
 }
 

@@ -1,4 +1,62 @@
 @import "tailwindcss";
-html {
-  scroll-behavior: smooth;
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050816;
+color:white;
+font-family:system-ui,sans-serif;
+overflow-x:hidden;
+}
+
+/* GLOBAL ANIMATED BACKGROUND */
+
+.aurora-bg{
+background: linear-gradient(
+120deg,
+#0ea5e9,
+#9333ea,
+#ec4899,
+#6366f1
+);
+
+background-size:400% 400%;
+animation:aurora 18s ease infinite;
+}
+
+@keyframes aurora{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* glass cards */
+
+.glass{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+}
+
+/* glowing buttons */
+
+.btn-primary{
+background:linear-gradient(135deg,#22d3ee,#a855f7,#ec4899);
+padding:12px 30px;
+border-radius:12px;
+font-weight:600;
+transition:all .3s;
+}
+
+.btn-primary:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #a855f7;
+}
+
+/* section spacing */
+
+.section{
+padding:120px 24px;
 }

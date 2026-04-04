@@ -1,110 +1,93 @@
 import { motion as Motion } from "framer-motion"
-import { useState, useEffect } from "react"
 
 function Hero() {
 
-  const [text, setText] = useState("")
-  const [index, setIndex] = useState(0)
-  const [charIndex, setCharIndex] = useState(0)
-  const [deleting, setDeleting] = useState(false)
-
-  useEffect(() => {
-
-  const roles = [
-    "Full Stack Developer",
-    "MERN Stack Developer",
-    "React Developer",
-    "Backend Developer"
-  ]
-
-  const currentRole = roles[index]
-
-  let typingSpeed = deleting ? 40 : 80
-
-  if (!deleting && charIndex === currentRole.length) {
-    typingSpeed = 2000
-  }
-
-  const timer = setTimeout(() => {
-
-    if (!deleting) {
-
-      setText(currentRole.substring(0, charIndex + 1))
-      setCharIndex(charIndex + 1)
-
-      if (charIndex + 1 === currentRole.length) {
-        setDeleting(true)
-      }
-
-    } else {
-
-      setText(currentRole.substring(0, charIndex - 1))
-      setCharIndex(charIndex - 1)
-
-      if (charIndex === 0) {
-        setDeleting(false)
-        setIndex((prev) => (prev + 1) % roles.length)
-      }
-
-    }
-
-  }, typingSpeed)
-
-  return () => clearTimeout(timer)
-
-}, [charIndex, deleting, index])
-
   return (
-    <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white h-screen flex items-center justify-center">
 
-      <div className="text-center px-6">
+    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950 px-6">
 
-        <Motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-6xl font-bold"
-        >
-          Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Anuj Gupta
-          </span>
-        </Motion.h1>
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-        {/* Typing Effect */}
-        <Motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-4 text-xl text-gray-300 h-8"
-        >
-          {text}
-          <span className="animate-pulse">|</span>
-        </Motion.p>
+        {/* TEXT */}
+
+        <div>
+
+          <Motion.h1
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-6xl font-bold text-slate-800 dark:text-white"
+          >
+
+            Hi I'm
+
+            <span className="block text-emerald-500">
+              Anuj Gupta
+            </span>
+
+          </Motion.h1>
+
+          <Motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-4 text-lg text-slate-600 dark:text-slate-300"
+          >
+
+            MERN Stack Developer building modern web applications with clean UI and scalable backend systems.
+
+          </Motion.p>
+
+          {/* BUTTONS */}
+
+          <div className="mt-8 flex gap-4">
+
+            <a href="#projects">
+
+              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition">
+                View Projects
+              </button>
+
+            </a>
+
+            <a href="#contact">
+
+              <button className="border border-emerald-500 text-emerald-500 px-6 py-3 rounded-lg hover:bg-emerald-500 hover:text-white transition">
+                Contact Me
+              </button>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        {/* IMAGE */}
 
         <Motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-6 flex justify-center gap-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="flex justify-center"
         >
-          <a href="#projects">
-            <button className="bg-blue-500 px-6 py-2 rounded-lg hover:bg-blue-600 hover:scale-105 transition duration-300">
-              View Projects
-            </button>
-          </a>
 
-          <a href="#contact">
-            <button className="border border-blue-500 px-6 py-2 rounded-lg hover:bg-blue-500 hover:scale-105 transition duration-300">
-              Contact Me
-            </button>
-          </a>
+          <div className="relative">
+
+            <div className="absolute inset-0 bg-emerald-400 blur-3xl opacity-30 rounded-full"></div>
+
+            <img
+              src="/profile.png"
+              className="w-[280px] rounded-full border-4 border-emerald-400 relative"
+            />
+
+          </div>
 
         </Motion.div>
 
       </div>
 
     </section>
+
   )
 }
 

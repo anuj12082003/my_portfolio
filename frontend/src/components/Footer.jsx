@@ -1,56 +1,54 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
 
 function Footer() {
+
   return (
-    <footer className="bg-black text-white py-10 border-t border-gray-800">
 
-      <div className="max-w-6xl mx-auto px-6 text-center">
+    <footer className="bg-white dark:bg-slate-950 text-center py-10 border-t border-slate-200 dark:border-slate-800">
 
-        <h2 className="text-2xl font-semibold mb-4">
-          Anuj Gupta
-        </h2>
+      <h2 className="text-2xl font-semibold text-emerald-500 mb-2">
+        Anuj Gupta
+      </h2>
 
-        <p className="text-gray-400 mb-6">
-          Full Stack Developer | MERN Stack
-        </p>
+      <p className="text-slate-600 dark:text-slate-400 mb-6">
+        MERN Stack Developer
+      </p>
 
-        {/* Social Icons */}
-        <div className="flex justify-center gap-6 text-xl mb-6">
+      <div className="flex justify-center gap-6 text-xl">
 
-          <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-blue-400 hover:scale-110 transition duration-300"
-          >
-            <FaGithub />
-          </a>
+        <a
+          href="https://github.com/anuj12082003"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-emerald-500 transition"
+        >
+          <FaGithub />
+        </a>
 
-          <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-blue-400 hover:scale-110 transition duration-300"
-          >
-            <FaLinkedin />
-          </a>
+        <a
+          href="https://www.linkedin.com/in/anuj-gupta-2488b7268/"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-emerald-500 transition"
+        >
+          <FaLinkedin />
+        </a>
 
-          <a
-            href="mailto:youremail@gmail.com"
-            className="hover:text-blue-400 hover:scale-110 transition duration-300"
-          >
-            <FaEnvelope />
-          </a>
-
-        </div>
-
-        <p className="text-gray-500 text-sm">
-          © {new Date().getFullYear()} Anuj Gupta. All rights reserved.
-        </p>
+        <a
+          href="mailto:anuj9284gupta@gmail.com"
+          className="hover:text-emerald-500 transition"
+        >
+          <FaEnvelope />
+        </a>
 
       </div>
 
+      <p className="text-slate-500 text-sm mt-6">
+        © {new Date().getFullYear()} Anuj Gupta
+      </p>
+
     </footer>
+
   )
 }
 
